@@ -163,6 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initDragAndDrop();
     updateBalance();
     
+    // Lock screen orientation to landscape
+    if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(function(error) {
+            console.log("Screen orientation lock failed: ", error);
+        });
+    }
+    
     // Add input event listeners for direct value entry
     ['x-value', 'y-value'].forEach(id => {
         const input = document.getElementById(id);
