@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equation Balance Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="equation-display">
+            <span id="leftSide">0</span> = <span id="rightSide">0</span>
+        </div>
+        
+        <div class="controls-panel">
+            <div class="variables">
+                <div class="variable-control">
+                    <span>x = </span>
+                    <div class="number-spinner">
+                        <input type="number" id="x-value" value="1">
+                        <div class="spinner-buttons">
+                            <button onclick="adjustVariable('x', 1)">▲</button>
+                            <button onclick="adjustVariable('x', -1)">▼</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="variable-control">
+                    <span>y = </span>
+                    <div class="number-spinner">
+                        <input type="number" id="y-value" value="1">
+                        <div class="spinner-buttons">
+                            <button onclick="adjustVariable('y', 1)">▲</button>
+                            <button onclick="adjustVariable('y', -1)">▼</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="snapshot-btn">Snapshots</button>
+        </div>
+
+        <div class="balance">
+            <div class="scale-beam">
+                <div class="plate left-plate" id="leftPlate"></div>
+                <div class="balance-center"></div>
+                <div class="plate right-plate" id="rightPlate"></div>
+            </div>
+            <div class="balance-stand"></div>
+        </div>
+
+        <div class="tiles-container">
+            <div class="tiles left-tiles">
+                <div class="tile x-tile" draggable="true" data-value="x">x</div>
+                <div class="tile x-neg-tile" draggable="true" data-value="-x">-x</div>
+                <div class="tile y-tile" draggable="true" data-value="y">y</div>
+                <div class="tile y-neg-tile" draggable="true" data-value="-y">-y</div>
+                <div class="tile one-tile" draggable="true" data-value="1">1</div>
+                <div class="tile neg-one-tile" draggable="true" data-value="-1">-1</div>
+            </div>
+            <div class="lock-icon">🔒</div>
+            <div class="tiles right-tiles">
+                <div class="tile x-tile" draggable="true" data-value="x">x</div>
+                <div class="tile x-neg-tile" draggable="true" data-value="-x">-x</div>
+                <div class="tile y-tile" draggable="true" data-value="y">y</div>
+                <div class="tile y-neg-tile" draggable="true" data-value="-y">-y</div>
+                <div class="tile one-tile" draggable="true" data-value="1">1</div>
+                <div class="tile neg-one-tile" draggable="true" data-value="-1">-1</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

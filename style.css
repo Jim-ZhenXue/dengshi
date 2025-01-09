@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f3ff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.equation-display {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.controls-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.variables {
+    display: flex;
+    gap: 30px;
+}
+
+.variable-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.number-spinner {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.number-spinner input {
+    width: 60px;
+    text-align: center;
+    padding: 8px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.spinner-buttons {
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #ddd;
+}
+
+.spinner-buttons button {
+    border: none;
+    background: #f5f5f5;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.spinner-buttons button:hover {
+    background: #e0e0e0;
+}
+
+.snapshot-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.snapshot-btn::before {
+    content: "+";
+    font-size: 20px;
+}
+
+.balance {
+    position: relative;
+    height: 400px;
+    margin: 60px 0;
+    transition: all 0.3s ease;
+}
+
+.scale-beam {
+    position: absolute;
+    width: 80%;
+    height: 15px;
+    background: #555;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.plate {
+    width: 250px;
+    height: 250px;
+    background: #f0f0f0;
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.left-plate {
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right-plate {
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.balance-center {
+    width: 30px;
+    height: 120px;
+    background: #555;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 4px;
+}
+
+.balance-stand {
+    width: 160px;
+    height: 120px;
+    background: #555;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+}
+
+.tiles-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.tiles {
+    display: flex;
+    gap: 15px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tile {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: move;
+    user-select: none;
+    font-size: 24px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.tile:hover {
+    transform: scale(1.05);
+}
+
+.x-tile { 
+    background: #90CAF9; 
+    color: #1565C0;
+}
+
+.x-neg-tile { 
+    background: white;
+    border: 3px dashed #90CAF9; 
+    color: #1565C0;
+}
+
+.y-tile { 
+    background: #F48FB1; 
+    color: #C2185B;
+}
+
+.y-neg-tile { 
+    background: white;
+    border: 3px dashed #F48FB1; 
+    color: #C2185B;
+}
+
+.one-tile { 
+    background: #A5D6A7; 
+    color: #2E7D32;
+}
+
+.neg-one-tile { 
+    background: white;
+    border: 3px dashed #A5D6A7; 
+    color: #2E7D32;
+}
+
+.lock-icon {
+    font-size: 32px;
+    color: #555;
+    padding: 15px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
