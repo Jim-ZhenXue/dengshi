@@ -163,12 +163,71 @@ document.addEventListener('DOMContentLoaded', () => {
     initDragAndDrop();
     updateBalance();
     
-    // Lock screen orientation to landscape
-    if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(function(error) {
-            console.log("Screen orientation lock failed: ", error);
-        });
+    // Lock screen orientation to landscape using multiple methods
+    function lockOrientation() {
+        try {
+            // Method 1: Screen Orientation API
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(function(error) {
+                    console.log("Screen orientation lock failed: ", error);
+                    // Fallback to other methods
+                    tryFallbackMethods();
+                });
+            } else {
+                // Try fallback methods if Screen Orientation API is not available
+                tryFallbackMethods();
+            }
+        } catch (e) {
+            console.log("Orientation lock error:", e);
+            tryFallbackMethods();
+        }
     }
+
+    function tryFallbackMethods() {
+        // Method 2: Deprecated orientation API
+        if (screen.lockOrientation) {
+            screen.lockOrientation('landscape');
+        } else if (screen.mozLockOrientation) {
+            screen.mozLockOrientation('landscape');
+        } else if (screen.msLockOrientation) {
+            screen.msLockOrientation('landscape');
+        }
+
+        // Method 3: Force orientation through viewport
+        let viewport = document.querySelector("meta[name=viewport]");
+        if (viewport) {
+            viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=landscape";
+        }
+    }
+
+    // Try to lock orientation immediately
+    lockOrientation();
+
+    // Try to lock orientation when device orientation changes
+    window.addEventListener('orientationchange', function() {
+        setTimeout(lockOrientation, 200);
+        
+        // Force re-layout after orientation change
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+            document.body.style.height = window.innerHeight + 'px';
+        }, 300);
+    });
+
+    // Force landscape on resize
+    window.addEventListener('resize', function() {
+        setTimeout(lockOrientation, 200);
+        
+        // Update layout on resize
+        document.body.style.height = window.innerHeight + 'px';
+    });
+
+    // Prevent scrolling on mobile devices
+    document.body.addEventListener('touchmove', function(e) {
+        if (e.target.tagName !== 'INPUT') {
+            e.preventDefault();
+        }
+    }, { passive: false });
     
     // Add input event listeners for direct value entry
     ['x-value', 'y-value'].forEach(id => {

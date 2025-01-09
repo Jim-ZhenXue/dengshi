@@ -1,3 +1,68 @@
+@media screen and (orientation: portrait) {
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+    body {
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+    }
+    .container {
+        width: 100vh;
+        height: 100vw;
+        padding: 10px;
+        overflow-x: hidden;
+    }
+}
+
+/* 适配不同设备的横屏显示 */
+@media screen and (max-height: 450px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .equation-display {
+        padding: 15px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .controls-panel {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .balance {
+        height: 200px;
+        margin: 20px 0;
+    }
+    
+    .plate {
+        width: 150px;
+        height: 150px;
+        padding: 10px;
+    }
+    
+    .tile {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .tiles {
+        padding: 15px;
+        gap: 10px;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
